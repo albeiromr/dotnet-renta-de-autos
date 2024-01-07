@@ -1,29 +1,19 @@
-﻿namespace Domain.Vehicles;
+﻿using Domain.Abstractions;
 
-public sealed class Vehicle
+namespace Domain.Vehicles;
+
+public sealed class Vehicle: Entity
 {
-    public Guid Id { get; private set; }
+    public Vehicle(Guid id) : base(id) { }
 
     // representa el model del vehiculo
-    public string? Model { get; private set; }
+    public Model? Model { get; private set; }
 
     // vin es como el número de serie del carro
-    public string? Vin { get; private set; }
+    public Vin? Vin { get; private set; }
 
-    // representa el País donde se recogerá el vehiculo
-    public string?  Country { get; set; }
-
-    // representa el departamento donde se recogerá el vehiculo
-    public string? Department { get; private set; }
-
-    // Representa la provincia donde se recogerá el vehiculo
-    public string? Province { get; private set; }
-
-    // representa la ciudad donde se recogerá el vehiculo
-    public string? City { get; private set; }
-
-    // dirección donde se recogerá el vehiculo
-    public string? PickUpAddress { get; private set; }
+    //representa toda la información de dirección del vehiculo 
+    public Address? Address { get; private set; }
 
     //representa el precio de la renta del vehiculo
     public decimal RentPrice { get; private set; }
