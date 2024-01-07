@@ -2,8 +2,7 @@
 
 // Address es un object value que representa toda la información de 
 // la dirección, notese que a diferencia de una entidad, un object
-// value no tiene un identificador único´(Id), y aún asi su información
-// es única por que no hay dos direcciones iguales
+// value no tiene un identificador único´(Id)
 public record Address
 (
     // representa el País donde se recogerá el vehiculo

@@ -4,7 +4,26 @@ namespace Domain.Vehicles;
 
 public sealed class Vehicle: Entity
 {
-    public Vehicle(Guid id) : base(id) { }
+    public Vehicle(
+        Guid id,
+        Model model,
+        Vin vin,
+        Address address,
+        Currency rentPrice,
+        Currency maintanancePrice,
+        DateTime lastRentDate,
+        List<Accessory> accessories
+
+    ) : base(id) 
+    {
+        Model = model;
+        Vin = vin;
+        Address = address;
+        RentPrice = rentPrice;
+        MaintenancePrice = maintanancePrice;
+        LastRentDate = lastRentDate;
+        Accessories = accessories;
+    }
 
     // representa el model del vehiculo
     public Model? Model { get; private set; }
@@ -16,16 +35,10 @@ public sealed class Vehicle: Entity
     public Address? Address { get; private set; }
 
     //representa el precio de la renta del vehiculo
-    public decimal RentPrice { get; private set; }
-
-    // representa el tipo de moneda con el que se pagará el vehiculo
-    public string? RentPriceCurrencyType { get; private set; }
+    public Currency? RentPrice { get; private set; }
 
     //representa el precio de mantenimiento del vehiculo
-    public decimal MaintenancePrice { get; private set; }
-
-    // representa el tipo de moneda con el que se pagará el mantenimiento del vehiculo
-    public string? MaintenancePriceCurrencyType { get; private set; }
+    public Currency? MaintenancePrice { get; private set; }
 
     // representa la fecha del ultimo alquiler
     public DateTime? LastRentDate { get; private set; }
