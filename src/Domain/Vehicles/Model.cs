@@ -1,8 +1,6 @@
 ﻿namespace Domain.Vehicles;
 
-// Model es un object value que representa el modelo del vehiculo, notese
-// que a diferencia de una entidad, un object value no tiene un identificador
-// único´(Id)
+// object value que representa el modelo del vehiculo, ejemplo mazda2021
 public record Model(
     string value
 );

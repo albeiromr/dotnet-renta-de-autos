@@ -1,20 +1,29 @@
 ﻿namespace Domain.Vehicles;
 
-public record Currency(decimal moneyAmount, CurrencyType currencyType)
+// object value que representa el cada uno de los tipos de moneda con 
+// los que un usuario podría hacer un pago, como dolares o euros
+public record Currency
 {
-    // Esta es una sobrecarga de operador para validar si el cliente
-    // está pagando con el mismo tipo de moneda con el que pago su
-    // renta de vehiculos los meses anteriores.
-    public static Currency operator + (Currency left, Currency right)
+    public string? Code { get; init; }
+    private Currency(string code)
     {
-        if (left.currencyType != right.currencyType)
-            throw new InvalidOperationException("The currency type must be the same");
-
-        return new Currency(left.moneyAmount + right.moneyAmount, left.currencyType);
+        Code = code;
     }
+    
 
-    public static Currency GetInZero() => new Currency(0, CurrencyType.None);
-    public static Currency GetInZero(CurrencyType type) => new Currency(0, type);
-    public bool IsZero() => this == GetInZero(currencyType);
+    public static readonly Currency Usd = new Currency("USD");
+
+    public static readonly Currency Eur = new Currency("EUR");
+
+    public static readonly Currency None = new Currency("");
+
+    public static readonly IReadOnlyCollection<Currency> All = new[] { Usd, Eur };
+
+
+    public static Currency FromCode(string code)
+    {
+        return All.FirstOrDefault(c => c.Code == code) ?? 
+            throw new ApplicationException("The currency code is not valid");
+    }
 }
 

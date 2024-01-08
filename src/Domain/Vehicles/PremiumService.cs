@@ -1,7 +1,7 @@
 ﻿namespace Domain.Vehicles;
 
-//Representa los servicios premium que puede tener un vehiculo
-public enum Accessory
+// object value que representa los servicios premium que puede tener un vehiculo
+public enum PremiumService
 {
     wifi = 1,
     AirConditioning = 2,

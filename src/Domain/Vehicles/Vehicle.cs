@@ -8,21 +8,21 @@ public sealed class Vehicle: Entity
         Guid id,
         Model model,
         Vin vin,
-        Address address,
-        Currency rentPrice,
-        Currency maintanancePrice,
+        Location location,
+        Price rentPrice,
+        Price maintanancePrice,
         DateTime lastRentDate,
-        List<Accessory> accessories
+        List<PremiumService> premiumServices
 
     ) : base(id) 
     {
         Model = model;
         Vin = vin;
-        Address = address;
+        Location = location;
         RentPrice = rentPrice;
         MaintenancePrice = maintanancePrice;
         LastRentDate = lastRentDate;
-        Accessories = accessories;
+        PremiumServices = premiumServices;
     }
 
     // representa el model del vehiculo
@@ -31,19 +31,19 @@ public sealed class Vehicle: Entity
     // vin es como el número de serie del carro
     public Vin? Vin { get; private set; }
 
-    //representa toda la información de dirección del vehiculo 
-    public Address? Address { get; private set; }
+    //representa toda la información de la ubicación del vehiculo
+    public Location? Location { get; private set; }
 
     //representa el precio de la renta del vehiculo
-    public Currency? RentPrice { get; private set; }
+    public Price? RentPrice { get; private set; }
 
     //representa el precio de mantenimiento del vehiculo
-    public Currency? MaintenancePrice { get; private set; }
+    public Price? MaintenancePrice { get; private set; }
 
     // representa la fecha del ultimo alquiler
     public DateTime? LastRentDate { get; private set; }
 
-    // Representa los accesorios premium que pueden ser incluidos en el vehiculo
-    public List<Accessory> Accessories { get; private set; } = new List<Accessory>();
+    // Representa los servicios premium que pueden ser incluidos en el vehiculo
+    public List<PremiumService> PremiumServices { get; private set; } = new List<PremiumService>();
 }
 
