@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.shared;
+namespace Domain.Commons;
 
 // object value que representa un precio en el sistema
 public record Price(decimal amount, Currency currency)

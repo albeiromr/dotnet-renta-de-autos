@@ -1,8 +1,8 @@
 ﻿using Domain.Abstractions;
-using Domain.shared;
+using Domain.Commons;
 using System;
 
-namespace Domain.Rental;
+namespace Domain.Rentals;
 
 // Representa la entidad rental, es decir los datos del arrendamiento de 
 // un vehiculo
@@ -70,5 +70,16 @@ public sealed class Rental : Entity
 
     // representa la fecha en la cual todo el proceso de arrendamiento se ha completado
     public DateTime? CompleatedDate { get; private set; }
+
+
+    // para crear un nuevo objeto de tipo Rental se usa el método 
+    // create junto con el constructor privado para que ningún ente 
+    // o programa externo pueda crear objetos de tipo Rental
+    public static Rental create(
+        Guid vehicleId,
+        Guid userId,
+        DateRange duration,
+        DateTime creationDate
+    ) { }
 }
 

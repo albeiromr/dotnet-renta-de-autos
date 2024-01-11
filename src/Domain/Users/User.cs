@@ -26,10 +26,9 @@ public sealed class User : Entity
         Email = email;
     }
 
-    // para crear un nuevo objeto de tipo user se usa el método 
-    // create para usar el principio de encapsulamiento y proteger
-    // así los detalles de la creación de objetos que hay en el
-    // constructor
+    // para crear un nuevo objeto de tipo User se usa el método 
+    // create junto con el constructor privado para que ningún ente 
+    // o programa externo pueda crear objetos de tipo User
     public static User Create(
         Guid id,
         Name name,

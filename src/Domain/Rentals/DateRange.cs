@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Rental;
+namespace Domain.Rentals;
 
 public sealed record DateRange
 {
