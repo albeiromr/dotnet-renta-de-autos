@@ -37,7 +37,7 @@ public sealed class Vehicle: Entity
     //representa toda la información de la ubicación del vehiculo
     public Location? Location { get; private set; }
 
-    //representa el precio de la renta del vehiculo
+    //representa el precio de la renta del vehiculo por cada día
     public Price? RentPrice { get; private set; }
 
     //representa el precio de mantenimiento del vehiculo

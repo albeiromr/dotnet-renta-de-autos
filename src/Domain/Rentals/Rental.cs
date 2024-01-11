@@ -1,5 +1,6 @@
 ﻿using Domain.Abstractions;
 using Domain.Commons;
+using Domain.Rentals.events;
 using System;
 
 namespace Domain.Rentals;
@@ -79,7 +80,26 @@ public sealed class Rental : Entity
         Guid vehicleId,
         Guid userId,
         DateRange duration,
-        DateTime creationDate
-    ) { }
+        DateTime creationDate,
+        PriceDetails priceDetails
+    ) 
+    {
+        var rental = new Rental(
+            Guid.NewGuid(),
+            vehicleId,
+            userId,
+            duration,
+            priceDetails.RentalPeriodPice,
+            priceDetails.MaintainancePrice,
+            priceDetails.PremiumServicesPrice,
+            priceDetails.TotalPrice,
+            RentalStatus.Reserved,
+            creationDate
+        );
+
+        rental.DispatchDomainEvent(new ReservedRentalDomainEvent(rental.Id));
+
+        return rental;
+    }
 }
 

@@ -1,4 +1,4 @@
-﻿namespace Domain.Vehicles;
+﻿namespace Domain.Commons;
 
 // object value que representa los servicios premium que puede tener un vehiculo
 public enum PremiumService
