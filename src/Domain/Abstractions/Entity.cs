@@ -1,4 +1,8 @@
-﻿namespace Domain.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Domain.Abstractions;
 
 //Representa las propiedades que son comunes en cada entidad
 public abstract class Entity

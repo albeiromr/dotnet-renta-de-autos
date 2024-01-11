@@ -1,5 +1,6 @@
 ﻿using Domain.Abstractions;
 using Domain.Users.Events;
+using System;
 
 namespace Domain.Users;
 

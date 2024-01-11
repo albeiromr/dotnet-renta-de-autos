@@ -1,4 +1,8 @@
-﻿namespace Domain.Vehicles;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Domain.Vehicles;
 
 // object value que representa el cada uno de los tipos de moneda con 
 // los que un usuario podría hacer un pago, como dolares o euros
