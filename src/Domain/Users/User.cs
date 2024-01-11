@@ -1,4 +1,5 @@
 ﻿using Domain.Abstractions;
+using Domain.Users.Events;
 
 namespace Domain.Users;
 
@@ -36,6 +37,7 @@ public sealed class User : Entity
     )
     {
         User user = new User( Guid.NewGuid(), name, lastName, email );
+        user.DispatchDomainEvent(new UserCreatedDomainEvent(user.Id));
         return user;
     }
 }
