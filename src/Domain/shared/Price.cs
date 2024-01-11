@@ -1,11 +1,13 @@
-﻿namespace Domain.Vehicles;
+﻿using System;
 
-// object value que representa el precio del alquiler y/o mantenimieno del vehiculo
+namespace Domain.shared;
+
+// object value que representa un precio en el sistema
 public record Price(decimal amount, Currency currency)
 {
     // Esta es una sobrecarga de operador para evitar que el usuario haga
     // pago con dos tipos de moneda diferentes
-    public static Price operator + (Price left, Price right)
+    public static Price operator +(Price left, Price right)
     {
         if (left.currency != right.currency)
             throw new InvalidOperationException("The currency type must be the same");

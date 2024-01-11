@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.Vehicles;
+namespace Domain.shared;
 
 // object value que representa el cada uno de los tipos de moneda con 
 // los que un usuario podría hacer un pago, como dolares o euros
@@ -13,7 +13,7 @@ public record Currency
     {
         Code = code;
     }
-    
+
 
     public static readonly Currency Usd = new Currency("USD");
 
@@ -26,7 +26,7 @@ public record Currency
 
     public static Currency FromCode(string code)
     {
-        return All.FirstOrDefault(c => c.Code == code) ?? 
+        return All.FirstOrDefault(c => c.Code == code) ??
             throw new ApplicationException("The currency code is not valid");
     }
 }
