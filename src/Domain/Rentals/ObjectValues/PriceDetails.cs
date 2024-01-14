@@ -1,6 +1,6 @@
-﻿using Domain.Commons;
+﻿using Domain.Abstractions.ObjectValues;
 
-namespace Domain.Rentals;
+namespace Domain.Rentals.ObjectValues;
 
 // object value que representa los detalles de precios de un arrendamiento
 public record PriceDetails(

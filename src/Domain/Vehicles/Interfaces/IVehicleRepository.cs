@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Vehicles;
+namespace Domain.Vehicles.Interfaces;
 
 public interface IVehicleRepository
 {

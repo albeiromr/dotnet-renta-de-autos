@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Abstractions.Interfaces;
 
-namespace Domain.Abstractions;
+namespace Domain.Abstractions.Clases;
 
 //Representa las propiedades que son comunes en cada entidad
 public abstract class Entity
@@ -30,7 +31,7 @@ public abstract class Entity
     }
 
     // limpia toda la lista de los eventos
-    public void ClaarDomainEvents()
+    public void ClearDomainEvents()
     {
         _domainEvents.Clear();
     }

@@ -1,12 +1,14 @@
-﻿using Domain.Commons;
+﻿using Domain.Abstractions.Enums;
+using Domain.Abstractions.ObjectValues;
+using Domain.Rentals.ObjectValues;
 using Domain.Vehicles;
 
-namespace Domain.Rentals;
+namespace Domain.Rentals.Services;
 
-public static class PriceService
+public class PriceService
 {
     // calcula y fabrica los precios asociados a la renta de un vehiculo
-    public static PriceDetails CalculatePrices(Vehicle vehicle, DateRange rentalTimePerriod)
+    public PriceDetails CalculatePrices(Vehicle vehicle, DateRange rentalTimePerriod)
     {
         // obteniendo el tipo de moneda en la cual hay que calcular los montos
         Currency currency = vehicle.RentPrice!.currency;

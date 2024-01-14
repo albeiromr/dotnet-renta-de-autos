@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.Commons;
+namespace Domain.Abstractions.ObjectValues;
 
 // object value que representa cada uno de los tipos de moneda con 
 // los que un usuario podría hacer un pago, como dolares o euros

@@ -1,5 +1,6 @@
-﻿using Domain.Abstractions;
+﻿using Domain.Abstractions.Clases;
 using Domain.Users.Events;
+using Domain.Users.ObjectValues;
 using System;
 
 namespace Domain.Users;

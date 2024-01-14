@@ -1,4 +1,4 @@
-﻿namespace Domain.Vehicles;
+﻿namespace Domain.Vehicles.ObjectValues;
 
 // object value que representa toda la información de donde está
 // ubicado el vehiculo

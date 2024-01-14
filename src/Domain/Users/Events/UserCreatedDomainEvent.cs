@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions;
+﻿using Domain.Abstractions.Interfaces;
 using System;
 
 namespace Domain.Users.Events;

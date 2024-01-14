@@ -1,4 +1,4 @@
-﻿namespace Domain.Rentals;
+﻿namespace Domain.Rentals.Enums;
 
 // representa los estados que puede tener el arrendamiento de un vehiculo
 public enum RentalStatus

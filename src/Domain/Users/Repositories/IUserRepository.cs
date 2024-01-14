@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Users;
+namespace Domain.Users.Repositories;
 
 internal interface IUserRepository
 {

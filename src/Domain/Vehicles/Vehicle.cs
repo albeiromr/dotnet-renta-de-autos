@@ -1,8 +1,10 @@
-﻿using Domain.Abstractions;
-using Domain.Commons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Domain.Rentals.events;
+using Domain.Vehicles.ObjectValues;
+using Domain.Abstractions.Clases;
+using Domain.Abstractions.Enums;
+using Domain.Abstractions.ObjectValues;
 
 namespace Domain.Vehicles;
 
@@ -24,7 +26,7 @@ public sealed class Vehicle : Entity
     public Price? MaintenancePrice { get; private set; }
 
     // representa la fecha del ultimo alquiler
-    public DateTime? LastRentDate { get; private set; }
+    public DateTime? LastRentDate { get; internal set; }
 
     // Representa los servicios premium que pueden ser incluidos en el vehiculo
     public List<PremiumAccessory> PremiumAccessories { get; private set; } = new List<PremiumAccessory>();
