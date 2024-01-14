@@ -4,16 +4,11 @@ using System.Linq;
 
 namespace Domain.Commons;
 
-// object value que representa el cada uno de los tipos de moneda con 
+// object value que representa cada uno de los tipos de moneda con 
 // los que un usuario podría hacer un pago, como dolares o euros
 public record Currency
 {
     public string? Code { get; init; }
-    private Currency(string code)
-    {
-        Code = code;
-    }
-
 
     public static readonly Currency Usd = new Currency("USD");
 
@@ -23,6 +18,10 @@ public record Currency
 
     public static readonly IReadOnlyCollection<Currency> All = new[] { Usd, Eur };
 
+    private Currency(string code)
+    {
+        Code = code;
+    }
 
     public static Currency FromCode(string code)
     {

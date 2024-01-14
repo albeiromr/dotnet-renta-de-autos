@@ -4,11 +4,11 @@ namespace Domain.Rentals;
 
 public sealed record DateRange
 {
-    private DateRange(){}
-
     public DateOnly Init { get; init; }
     public DateOnly End { get; init; }
     public int DayQuantity => End.DayNumber - Init.DayNumber;
+
+    private DateRange(){}
 
     public static DateRange Create(DateOnly init, DateOnly end)
     {

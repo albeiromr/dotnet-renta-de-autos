@@ -9,47 +9,14 @@ namespace Domain.Rentals;
 // un vehiculo
 public sealed class Rental : Entity
 {
-    private Rental(
-        Guid id,
-        Guid vehicleId,
-        Guid userId,
-        DateRange duration,
-        Price rentalPeriodPrice,
-        Price maintainancePrice,
-        Price premiumServicesPrice,
-        Price totalPrice,
-        RentalStatus status,
-        DateTime creationDate
-    ) : base(id)
-    {
-        VehicleId = vehicleId;
-        UserId = userId;
-        Duration = duration;
-        RentalPeriodPice = rentalPeriodPrice;
-        MaintainancePrice = maintainancePrice;
-        PremiumServicesPrice = premiumServicesPrice; 
-        TotalPrice = totalPrice;
-        Status = status;
-        CreationDate = creationDate;
-    }
-
     // representa el id del vehiculo que se está arrendando
     public Guid VehicleId { get; private set; }
 
     // representa el usuario que está arrendando el vehiculo
     public Guid UserId { get; private set; }
 
-    // precio que se le cobrará al usuario por el periodo de arrendamiento sin el mantenimiento
-    public Price? RentalPeriodPice { get; private set; }
-
-    // precio que se le cobrará al usuario por el mantenimiento del vehiculo 
-    public Price? MaintainancePrice { get; private set; }
-
-    // represen el precio de los servicios premium que el usuario contrate
-    public Price? PremiumServicesPrice { get; private set; }
-
-    // representa el precio total del arrendamiento
-    public Price? TotalPrice { get; set; }
+    // representa todos los diferentes precios que tiene un objeto de tipo rental
+    public PriceDetails PriceDetails { get; private set; }
 
     // representa el estado de el arrendamiento
     public RentalStatus Status { get; private set; }
@@ -72,6 +39,23 @@ public sealed class Rental : Entity
     // representa la fecha en la cual todo el proceso de arrendamiento se ha completado
     public DateTime? CompleatedDate { get; private set; }
 
+    private Rental(
+        Guid id,
+        Guid vehicleId,
+        Guid userId,
+        DateRange duration,
+        PriceDetails priceDetails,
+        RentalStatus status,
+        DateTime creationDate
+    ) : base(id)
+    {
+        VehicleId = vehicleId;
+        UserId = userId;
+        Duration = duration;
+        PriceDetails = priceDetails;
+        Status = status;
+        CreationDate = creationDate;
+    }
 
     // para crear un nuevo objeto de tipo Rental se usa el método 
     // create junto con el constructor privado para que ningún ente 
@@ -89,10 +73,7 @@ public sealed class Rental : Entity
             vehicleId,
             userId,
             duration,
-            priceDetails.RentalPeriodPice,
-            priceDetails.MaintainancePrice,
-            priceDetails.PremiumServicesPrice,
-            priceDetails.TotalPrice,
+            priceDetails,
             RentalStatus.Reserved,
             creationDate
         );

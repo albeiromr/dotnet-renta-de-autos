@@ -7,7 +7,6 @@ namespace Domain.Users;
 // Representa la entidad user
 public sealed class User : Entity
 {
-
     public Name? Name { get; private set; }
     public LastName? LastName { get; private set; }
     public Email? Email { get; private set; }

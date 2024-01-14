@@ -23,25 +23,25 @@ public static class PriceService
         decimal porcentageAument = 0M;
 
         // obteniendo el precio por los servicios premium
-        foreach (var premiumService in vehicle.PremiumServices)
+        foreach (var premiumService in vehicle.PremiumAccessories)
         { 
             // agregando porcentajes de aumento dependiendo del valor de cada servicio premium
             // nueva sintaxis del switch toca estudiarla.
             porcentageAument += premiumService switch
             {
-                PremiumService.AppleCar or PremiumService.AndroidCar => 0.05m,
-                PremiumService.AirConditioning => 0.01m,
-                PremiumService.Maps => 0.01m,
-                PremiumService.wifi => 0.01m,
+                PremiumAccessory.AppleCar or PremiumAccessory.AndroidCar => 0.05m,
+                PremiumAccessory.AirConditioning => 0.01m,
+                PremiumAccessory.Maps => 0.01m,
+                PremiumAccessory.wifi => 0.01m,
             };
         }
 
         // inicializando en cero el precio de los servicios premium
-        var PremiumServicesCharges = Price.GetInZero(currency);
+        var PremiumAccessoriesCharges = Price.GetInZero(currency);
 
         if (porcentageAument > 0)
         {
-            PremiumServicesCharges = new Price(
+            PremiumAccessoriesCharges = new Price(
                 costPerPeriodTime.amount * porcentageAument,
                 currency
             );
@@ -58,12 +58,12 @@ public static class PriceService
         }
 
 
-        totalPrice += PremiumServicesCharges;
+        totalPrice += PremiumAccessoriesCharges;
 
         return new PriceDetails(
             costPerPeriodTime,
             vehicle.MaintenancePrice,
-            PremiumServicesCharges,
+            PremiumAccessoriesCharges,
             totalPrice
         );
     }
