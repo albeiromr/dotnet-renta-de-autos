@@ -148,5 +148,27 @@ public sealed class Rental : Entity
 
         return Result.CreateWithSuccessStatus();
     }
+
+    public Result CompleteRental(DateTime utcNow)
+    {
+        if (Status != RentalStatus.confirmed)
+        {
+            return Result.CreateWithFailureStatus(RentalErrors.NotConfirmed);
+        }
+
+        // validando las fechas del alquiler, por que si el arrendamiento
+        // ya está en proceso, es decir ya estamos en las fechas que el usuario 
+        // confirmó, no se podrá cancellar el arrendamiento
+        var currentDate = DateOnly.FromDateTime(utcNow);
+        if (currentDate > Duration!.Init)
+            return Result.CreateWithFailureStatus(RentalErrors.AreadyStarted);
+
+        Status = RentalStatus.completed;
+        CompleatedDate = utcNow;
+
+        DispatchDomainEvent(new RentalCompletedDomainEvent(Id));
+
+        return Result.CreateWithSuccessStatus();
+    }
 }
 
