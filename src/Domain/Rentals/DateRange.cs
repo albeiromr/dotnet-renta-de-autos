@@ -8,7 +8,7 @@ public sealed record DateRange
     public DateOnly End { get; init; }
     public int DayQuantity => End.DayNumber - Init.DayNumber;
 
-    private DateRange(){}
+    private DateRange() { }
 
     public static DateRange Create(DateOnly init, DateOnly end)
     {
@@ -24,5 +24,5 @@ public sealed record DateRange
     }
 
 }
-    
+
 

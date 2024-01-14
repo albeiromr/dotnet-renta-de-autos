@@ -6,7 +6,7 @@ using Domain.Rentals.events;
 
 namespace Domain.Vehicles;
 
-public sealed class Vehicle: Entity
+public sealed class Vehicle : Entity
 {
     // representa el model del vehiculo
     public Model? Model { get; private set; }
@@ -39,7 +39,7 @@ public sealed class Vehicle: Entity
         DateTime lastRentDate,
         List<PremiumAccessory> premiumAccessories
 
-    ) : base(id) 
+    ) : base(id)
     {
         Model = model;
         Vin = vin;
@@ -50,7 +50,7 @@ public sealed class Vehicle: Entity
         PremiumAccessories = premiumAccessories;
     }
 
-    
+
     // para crear un nuevo objeto de tipo Vehicle se usa el método 
     // create junto con el constructor privado para que ningún ente 
     // o programa externo pueda crear objetos de tipo User

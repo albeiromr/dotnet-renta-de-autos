@@ -31,7 +31,7 @@ public abstract class Entity
 
     // limpia toda la lista de los eventos
     public void ClaarDomainEvents()
-    { 
+    {
         _domainEvents.Clear();
     }
 

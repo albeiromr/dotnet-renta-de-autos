@@ -18,7 +18,7 @@ public sealed class User : Entity
         Name name,
         LastName lastName,
         Email email
-    ): base(id)
+    ) : base(id)
     {
         Name = name;
         LastName = lastName;
@@ -35,7 +35,7 @@ public sealed class User : Entity
         Email email
     )
     {
-        User user = new User( Guid.NewGuid(), name, lastName, email );
+        User user = new User(Guid.NewGuid(), name, lastName, email);
         user.DispatchDomainEvent(new UserCreatedDomainEvent(user.Id));
         return user;
     }

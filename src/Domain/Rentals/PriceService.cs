@@ -24,7 +24,7 @@ public static class PriceService
 
         // obteniendo el precio por los servicios premium
         foreach (var premiumService in vehicle.PremiumAccessories)
-        { 
+        {
             // agregando porcentajes de aumento dependiendo del valor de cada servicio premium
             // nueva sintaxis del switch toca estudiarla.
             porcentageAument += premiumService switch
@@ -52,7 +52,7 @@ public static class PriceService
         totalPrice += costPerPeriodTime;
 
 
-        if(!vehicle.MaintenancePrice!.IsZero())
+        if (!vehicle.MaintenancePrice!.IsZero())
         {
             totalPrice += vehicle.MaintenancePrice;
         }

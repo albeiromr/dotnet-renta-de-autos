@@ -25,7 +25,7 @@ public sealed class Rental : Entity
     public DateRange? Duration { get; private set; }
 
     // representa la fecha de creación de un nuevo registro de tipo Rental en el sistema
-    public DateTime? CreationDate { get; private set;}
+    public DateTime? CreationDate { get; private set; }
 
     // representa la fecha en la cual el usuario se arrepiente de  arrendar el vhiculo
     public DateTime? RefusalDate { get; private set; }
@@ -66,7 +66,7 @@ public sealed class Rental : Entity
         DateRange duration,
         DateTime creationDate,
         PriceDetails priceDetails
-    ) 
+    )
     {
         var rental = new Rental(
             Guid.NewGuid(),
