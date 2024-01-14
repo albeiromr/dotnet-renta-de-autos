@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.Clases;
+﻿using Domain.Commons.Clases;
 using Domain.Users.Events;
 using Domain.Users.ObjectValues;
 using System;

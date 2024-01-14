@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.ObjectValues;
+﻿using Domain.Commons.ObjectValues;
 
 namespace Domain.Rentals.ObjectValues;
 

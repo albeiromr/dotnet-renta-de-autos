@@ -1,8 +1,8 @@
-﻿using Domain.Abstractions.ObjectValues;
+﻿using Domain.Commons.ObjectValues;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Domain.Abstractions.Clases;
+namespace Domain.Commons.Clases;
 
 public class Result
 {

@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.ObjectValues;
+﻿using Domain.Commons.ObjectValues;
 
 namespace Domain.Rentals.Errors;
 
@@ -6,27 +6,27 @@ namespace Domain.Rentals.Errors;
 // entidad rental
 public static class RentalErrors
 {
-    public static Error NotFound = new Error(
+    public static readonly Error NotFound = new Error(
         "Rental.NotFound",
         "The rental with the specified Id wasn´t found"
     );
 
-    public static Error Overlap = new Error(
+    public static readonly Error Overlap = new Error(
         "Rental.Overlap",
         "The vehicle is not available for rental in the required date range"
     );
 
-    public static Error NotReserved = new Error(
+    public static readonly Error NotReserved = new Error(
         "Rental.NotReserved",
         "The Renatl is not reserved"
     );
 
-    public static Error NotConfirmed = new Error(
+    public static readonly Error NotConfirmed = new Error(
         "Rental.NotConfirmed",
         "The Renatl is not NotConfirmed"
     );
 
-    public static Error AreadyStarted = new Error(
+    public static readonly Error AreadyStarted = new Error(
         "Rental.AreadyStarted",
         "The Renatl is already started"
     );

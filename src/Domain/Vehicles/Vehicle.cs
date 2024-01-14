@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Domain.Rentals.events;
 using Domain.Vehicles.ObjectValues;
-using Domain.Abstractions.Clases;
-using Domain.Abstractions.Enums;
-using Domain.Abstractions.ObjectValues;
+using Domain.Commons.Clases;
+using Domain.Commons.Enums;
+using Domain.Commons.ObjectValues;
 
 namespace Domain.Vehicles;
 

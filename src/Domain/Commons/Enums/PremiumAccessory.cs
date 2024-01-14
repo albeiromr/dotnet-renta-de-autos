@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Enums;
+﻿namespace Domain.Commons.Enums;
 
 // object value que representa los servicios premium que puede tener un vehiculo
 public enum PremiumAccessory

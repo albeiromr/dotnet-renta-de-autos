@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.Clases;
+﻿using Domain.Commons.Clases;
 using Domain.Rentals.Enums;
 using Domain.Rentals.Errors;
 using Domain.Rentals.Events;

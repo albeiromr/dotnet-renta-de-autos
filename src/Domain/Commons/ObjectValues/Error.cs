@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.ObjectValues;
+﻿namespace Domain.Commons.ObjectValues;
 
 // object value que representa un error presentado dentro
 // de las operaciones de las entidades

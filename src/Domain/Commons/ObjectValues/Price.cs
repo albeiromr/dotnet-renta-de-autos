@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Abstractions.ObjectValues;
+namespace Domain.Commons.ObjectValues;
 
 // object value que representa un precio en el sistema
 public record Price(decimal amount, Currency currency)

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Abstractions.Interfaces;
+namespace Domain.Commons.Interfaces;
 
 internal interface IUnitOfWork
 {

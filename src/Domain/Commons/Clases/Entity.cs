@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Abstractions.Interfaces;
+using Domain.Commons.Interfaces;
 
-namespace Domain.Abstractions.Clases;
+namespace Domain.Commons.Clases;
 
 //Representa las propiedades que son comunes en cada entidad
 public abstract class Entity

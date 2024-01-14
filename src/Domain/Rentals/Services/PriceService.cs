@@ -1,5 +1,5 @@
-﻿using Domain.Abstractions.Enums;
-using Domain.Abstractions.ObjectValues;
+﻿using Domain.Commons.Enums;
+using Domain.Commons.ObjectValues;
 using Domain.Rentals.ObjectValues;
 using Domain.Vehicles;
 
