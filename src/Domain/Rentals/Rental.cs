@@ -97,7 +97,7 @@ public sealed class Rental : Entity
             creationDate
         );
 
-        rental.DispatchDomainEvent(new ReservedRentalDomainEvent(rental.Id));
+        rental.DispatchDomainEvent(new RentalCreatedDomainEvent(rental.Id));
 
         return rental;
     }

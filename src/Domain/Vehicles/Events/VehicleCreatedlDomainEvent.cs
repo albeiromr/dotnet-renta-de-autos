@@ -3,4 +3,4 @@ using System;
 
 namespace Domain.Rentals.events;
 
-public sealed record ReservedRentalDomainEvent(Guid id) : IDomainEvent;
+public sealed record VehicleCreatedDomainEvent(Guid id) : IDomainEvent;
