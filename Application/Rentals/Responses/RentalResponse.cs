@@ -1,6 +1,6 @@
-﻿namespace Application.Rentals.GetRentals;
+﻿namespace Application.Rentals.Responses;
 
-public sealed class GetRentalQueryResponse
+public sealed class RentalResponse
 {
     public Guid Id { get; init; }
     public Guid UserId { get; init; }

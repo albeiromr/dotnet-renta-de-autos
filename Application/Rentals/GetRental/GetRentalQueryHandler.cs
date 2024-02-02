@@ -1,11 +1,12 @@
 ﻿using Application.Commons.Interfaces;
+using Application.Rentals.Responses;
 using Dapper;
 using Domain.Commons.Clases;
 
-namespace Application.Rentals.GetRentals;
+namespace Application.Rentals.GetRental;
 
 // los handlers deben ser internal para que no queden expuestos
-internal sealed class GetRentalQueryHandler : IQueryHandler<GetRentalQuery, GetRentalQueryResponse>
+internal sealed class GetRentalQueryHandler : IQueryHandler<GetRentalQuery, RentalResponse>
 {
     private readonly ISqlConnectionFactory _connectionFactory;
 
@@ -14,7 +15,7 @@ internal sealed class GetRentalQueryHandler : IQueryHandler<GetRentalQuery, GetR
         _connectionFactory = connectionFactory;
     }
 
-    public async Task<Result<GetRentalQueryResponse>> Handle(GetRentalQuery request, CancellationToken cancellationToken)
+    public async Task<Result<RentalResponse>> Handle(GetRentalQuery request, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
 
@@ -34,11 +35,11 @@ internal sealed class GetRentalQueryHandler : IQueryHandler<GetRentalQuery, GetR
             price_details_total_price_currency AS TotalPriceCurrency,
             duration_init AS DurationInit,
             duration_end AS DurationEnd,
-            creation_date As CreationDate
+            creation_date AS CreationDate
             FROM alquileres WHERE id=@rentalId
          """;
 
-        var rental = await connection.QueryFirstOrDefaultAsync<GetRentalQueryResponse>(
+        var rental = await connection.QueryFirstOrDefaultAsync<RentalResponse>(
             sql,
             new
             {
