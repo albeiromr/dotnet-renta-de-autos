@@ -19,13 +19,15 @@ internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalComma
     private readonly IRentalRepository? _rentalRepository;
     private readonly PriceService? _priceService;
     private readonly IUnitOfWork? _unitOfWork;
+    private readonly IDateTimeProvider? _dateTimeProvider;
 
     public BookRentalCommandHandler(
         IUserRepository? userRepository,
         IVehicleRepository? vehicleRepository,
         IRentalRepository? rentalRepository,
         PriceService? priceService,
-        IUnitOfWork? unitOfWork
+        IUnitOfWork? unitOfWork,
+        IDateTimeProvider? dateTimePRovider
     )
     {
         _userRepository = userRepository;
@@ -33,6 +35,7 @@ internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalComma
         _rentalRepository = rentalRepository;
         _priceService = priceService;
         _unitOfWork = unitOfWork;
+        _dateTimeProvider = dateTimePRovider;
     }
 
     public async Task<Result<Guid>> Handle(BookRentalCommand request, CancellationToken cancellationToken)
@@ -59,7 +62,7 @@ internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalComma
             vehicle,
             user.Id,
             duration,
-            DateTime.UtcNow,
+            _dateTimeProvider!.CurrentTime,
             _priceService!
         );
 
