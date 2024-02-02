@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Rentals.Interfaces;
 
-public interface IAlquilerRepository
+public interface IRentalRepository
 {
     Task<Rental?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);  
     Task<bool> IsOverlappingAsync(

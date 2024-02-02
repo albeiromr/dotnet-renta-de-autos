@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Users.Repositories;
+namespace Domain.Users.Interfaces;
 
-internal interface IUserRepository
+public interface IUserRepository
 {
     Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
