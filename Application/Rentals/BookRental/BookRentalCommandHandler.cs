@@ -12,6 +12,7 @@ using Domain.Rentals;
 
 namespace Application.Rentals.BookRental;
 
+// los handlers deben ser internal para que no queden expuestos
 internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalCommand, Guid>
 {
     private readonly IUserRepository? _userRepository;

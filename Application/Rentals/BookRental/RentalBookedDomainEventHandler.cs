@@ -6,6 +6,7 @@ using MediatR;
 
 namespace Application.Rentals.BookRental;
 
+// los handlers deben ser internal para que no queden expuestos
 internal sealed class RentalBookedDomainEventHandler : INotificationHandler<RentalBookedDomainEvent>
 {
     private readonly IRentalRepository? _rentalRepository;
