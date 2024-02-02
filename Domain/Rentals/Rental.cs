@@ -64,7 +64,7 @@ public sealed class Rental : Entity
     // para crear un nuevo objeto de tipo Rental se usa el método 
     // create junto con el constructor privado para que ningún ente 
     // o programa externo pueda crear objetos de tipo Rental
-    public static Rental Create(
+    public static Rental Book(
         Vehicle vehicle,
         Guid userId,
         DateRange duration,
@@ -89,7 +89,7 @@ public sealed class Rental : Entity
 
         vehicle.LastRentDate = creationDate;
 
-        rental.DispatchDomainEvent(new RentalReservedDomainEvent(rental.Id));
+        rental.DispatchDomainEvent(new RentalBookedDomainEvent(rental.Id));
 
         return rental;
     }

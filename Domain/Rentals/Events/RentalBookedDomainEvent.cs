@@ -3,4 +3,4 @@ using System;
 
 namespace Domain.Rentals.Events;
 
-public sealed record RentalReservedDomainEvent(Guid id) : IDomainEvent;
+public sealed record RentalBookedDomainEvent(Guid id) : IDomainEvent;

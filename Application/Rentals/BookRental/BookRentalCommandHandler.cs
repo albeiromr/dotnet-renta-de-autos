@@ -58,7 +58,7 @@ internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalComma
             return Result.CreateWithFailureStatus<Guid>(RentalErrors.Overlap);
         }
 
-        var rental = Rental.Create(
+        var rental = Rental.Book(
             vehicle,
             user.Id,
             duration,
