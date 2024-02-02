@@ -57,6 +57,7 @@ internal sealed class SearchVehiclesQueryHandler : IQueryHandler<SearchVehiclesQ
         // en el siguiente método se hace un query que trae varios objetos desde la db y luego
         // cada uno de esos objetos se divide entre dos clases diferentes (VehicleResponse, AddressResponse),
         // y luego esos dos clases se unen en una sola para retornar una lista de VehicleResponse
+        // la explicación está en el vido 33 de el curso udemy
         var vehicles = await connection.QueryAsync<VehicleResponse, AddressResponse, VehicleResponse>(
             sql,
             (vehicle, Adress) =>
