@@ -1,5 +1,6 @@
 ﻿using Application.Commons.Behaviors;
 using Domain.Rentals.Services;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -18,6 +19,10 @@ public static class DependencyInjection
             configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
 
+        //injectando todas los validators desde el assemby
+        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+
+        //injectando servicios personalizados
         services.AddTransient<PriceService>();
 
         return services;
