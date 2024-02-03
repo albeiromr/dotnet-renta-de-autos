@@ -1,6 +1,6 @@
 ﻿namespace Application.Commons.Interfaces;
 
-internal interface IDateTimeProvider
+public interface IDateTimeService
 {
     DateTime CurrentTime { get; }
 }
