@@ -1,4 +1,5 @@
 ﻿using Application.Commons.Interfaces;
+using Dapper;
 using Domain.Commons.Interfaces;
 using Domain.Rentals.Interfaces;
 using Domain.Users.Interfaces;
@@ -6,6 +7,7 @@ using Domain.Vehicles.Interfaces;
 using Infrastructure.Databases;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Infrastructure.TypeHandlers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +44,13 @@ public static class DependencyInjection
 
         // agregando el unitofwork
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
+        // injectando la cadena de conexión para el sqlconnectionfactory
+        services.AddSingleton<ISqlConnectionFactory>( _ => new SqlConnectionFactory(connectionString));
+
+        // agregando los typehandlers para que postgres pueda soportar tipos de datos que 
+        // normalmente no soporta
+        SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
 
         return services;
     }
