@@ -30,7 +30,7 @@ public class Program
         //OJO!!! este es un método de extensión que ejecuta las migraciones
         // se explica en el video número 53 del curso de udemy
         // (migración con ef)
-        app.ApplyMigration();
+        app.ApplyMigrations();
 
         app.MapControllers();
 

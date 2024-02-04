@@ -7,7 +7,7 @@ namespace Api.Extensions;
 // (migración con ef)
 public static class ApplicationBuilderExtensions
 {
-    public static async void ApplyMigration(this IApplicationBuilder app)
+    public static async void ApplyMigrations(this IApplicationBuilder app)
     {
         using(var scope = app.ApplicationServices.CreateScope())
         {
