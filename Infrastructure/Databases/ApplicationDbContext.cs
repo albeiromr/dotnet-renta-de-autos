@@ -14,4 +14,15 @@ public sealed class ApplicationDbContext: DbContext, IUnitOfWork
     {
         throw new NotImplementedException();
     }
+
+    // aplicando las configuraciones de las tablas
+    // esto significa que cuando las entidades dean cargadas este método
+    // escaneará todo el assembly buscando todas las configuraciones de las entidades
+    // para aplicar dichas configuraciones a las entidades
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+        base.OnModelCreating(modelBuilder);
+    }
 }
