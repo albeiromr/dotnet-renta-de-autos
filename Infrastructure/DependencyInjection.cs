@@ -1,5 +1,10 @@
 ﻿using Application.Commons.Interfaces;
+using Domain.Commons.Interfaces;
+using Domain.Rentals.Interfaces;
+using Domain.Users.Interfaces;
+using Domain.Vehicles.Interfaces;
 using Infrastructure.Databases;
+using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +34,14 @@ public static class DependencyInjection
             // independiente para formatear los nombres de las columnas en la db
             options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
         });
+
+        // agregando los repositorios
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
+        services.AddScoped<IRentalRepository, RentalRepository>();
+
+        // agregando el unitofwork
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
         return services;
     }
