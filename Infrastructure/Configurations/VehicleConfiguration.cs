@@ -1,5 +1,4 @@
-﻿using Domain.Commons.ObjectValues;
-using Domain.Vehicles;
+﻿using Domain.Vehicles;
 using Domain.Vehicles.ObjectValues;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -26,20 +25,7 @@ internal sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
 
         //OwnsOne se usa para value objects que tienen mas de una propiedad
         builder.OwnsOne(vehicle => vehicle.Location);
-
-        // como [Price] también es un value object que tiene anidado el value object currncy
-        // debemos usar un builder
-        builder.OwnsOne(vehicle => vehicle.RentPrice, rentPriceBuilder =>
-        {
-            rentPriceBuilder.Property(price => price.currency)
-            .HasConversion(c => c.Code, code => Currency.FromCode(code!));
-        });
-
-        builder.OwnsOne(vehicle => vehicle.MaintenancePrice, maintenancePriceBuilder =>
-        {
-            maintenancePriceBuilder.Property(price => price.currency)
-            .HasConversion(c => c.Code, code => Currency.FromCode(code!));
-        });
+        
 
         // este campo se agrega para evitar problemas de concurrencia
         // es decir que dos usuarios modifiquen e mismo record al tiempo
