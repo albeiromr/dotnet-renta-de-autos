@@ -1,18 +1,16 @@
-﻿using Domain.Commons.Interfaces;
+﻿using Domain.Commons.Clases;
+using Domain.Commons.Interfaces;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Databases;
 
-public sealed class ApplicationDbContext: DbContext, IUnitOfWork
+public sealed class ApplicationDbContext : DbContext, IUnitOfWork
 {
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    private readonly IPublisher _publisher;
+    public ApplicationDbContext(DbContextOptions options, IPublisher publisher) : base(options)
     {
-        
-    }
-
-    public Task<int> SaveChanges(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
+        _publisher = publisher;
     }
 
     // aplicando las configuraciones de las tablas
@@ -24,5 +22,38 @@ public sealed class ApplicationDbContext: DbContext, IUnitOfWork
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    // sobreescribiendo este método que pertenece a la interfaz
+    // IUnitOfWork
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        var result = await base.SaveChangesAsync(cancellationToken);
+
+        await DispatchAllDomainEventsAsync();
+
+        return result;
+    }
+
+    private async Task DispatchAllDomainEventsAsync()
+    {
+        // generando una consulta para obtener todos los Domainevents que están esperando por 
+        // der dispatcheados en cada entidad
+        var domainEvents = ChangeTracker
+            .Entries<Entity>()
+            .Select(entry => entry.Entity)
+            .SelectMany(entity =>
+            {
+                var events = entity.GetDomainEvents();
+                entity.ClearDomainEvents();
+                return events;
+            }).ToList();
+
+        // Haciendo el dispatch de los domain events obtenidos
+        foreach (var domainEvent in domainEvents)
+        {
+            await _publisher.Publish(domainEvent);
+        }
+
     }
 }
