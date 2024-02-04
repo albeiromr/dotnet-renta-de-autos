@@ -20,7 +20,7 @@ public sealed class Rental : Entity
     public Guid UserId { get; private set; }
 
     // representa todos los diferentes precios que tiene un objeto de tipo rental
-    public PriceDetails PriceDetails { get; private set; }
+    public decimal Price { get; private set; }
 
     // representa el estado de el arrendamiento
     public RentalStatus Status { get; private set; }
@@ -48,7 +48,7 @@ public sealed class Rental : Entity
         Guid vehicleId,
         Guid userId,
         DateRange duration,
-        PriceDetails priceDetails,
+        decimal price,
         RentalStatus status,
         DateTime creationDate
     ) : base(id)
@@ -56,9 +56,15 @@ public sealed class Rental : Entity
         VehicleId = vehicleId;
         UserId = userId;
         Duration = duration;
-        PriceDetails = priceDetails;
+        Price = price;
         Status = status;
         CreationDate = creationDate;
+    }
+
+    // este constructor es solo para poder ejecutar las migraciones con ef
+    private Rental()
+    {
+
     }
 
     // para crear un nuevo objeto de tipo Rental se usa el método 
@@ -72,17 +78,15 @@ public sealed class Rental : Entity
         PriceService priceService
     )
     {
-        PriceDetails priceDetails = priceService.CalculatePrices(
-            vehicle,
-            duration
-        );
+        // se pueden crear servicios para almacenar lógica de negocio
+        decimal price = priceService.CalculatePrices(vehicle);
 
         Rental rental = new Rental(
             Guid.NewGuid(),
             vehicle.Id,
             userId,
             duration,
-            priceDetails,
+            price,
             RentalStatus.Reserved,
             creationDate
         );
@@ -99,7 +103,7 @@ public sealed class Rental : Entity
     // arrendamiento
     public Result ConfirmRental(DateTime utcNow)
     {
-        if(Status != RentalStatus.Reserved)
+        if (Status != RentalStatus.Reserved)
         {
             return Result.CreateWithFailureStatus(RentalErrors.NotReserved);
         }

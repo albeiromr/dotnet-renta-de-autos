@@ -26,6 +26,12 @@ public sealed class User : Entity
         Email = email;
     }
 
+    // este constructor es solo para poder ejecutar las migraciones con ef
+    private User()
+    {
+
+    }
+
     // para crear un nuevo objeto de tipo User se usa el método 
     // create junto con el constructor privado para que ningún ente 
     // o programa externo pueda crear objetos de tipo User

@@ -46,6 +46,12 @@ public sealed class Review : Entity
         CreationDate = creationDate;
     }
 
+    // este constructor es solo para poder ejecutar las migraciones con ef
+    private Review()
+    {
+
+    }
+
     public static Result<Review> Create(
         Rental rental,  
         Rating rating,

@@ -4,7 +4,6 @@ using Domain.Rentals.events;
 using Domain.Vehicles.ObjectValues;
 using Domain.Commons.Clases;
 using Domain.Commons.Enums;
-using Domain.Commons.ObjectValues;
 
 namespace Domain.Vehicles;
 
@@ -20,10 +19,7 @@ public sealed class Vehicle : Entity
     public Location? Location { get; private set; }
 
     //representa el precio de la renta del vehiculo por cada día
-    public Price? RentPrice { get; private set; }
-
-    //representa el precio de mantenimiento del vehiculo
-    public Price? MaintenancePrice { get; private set; }
+    public decimal Price { get; private set; }
 
     // representa la fecha del ultimo alquiler
     public DateTime? LastRentDate { get; internal set; }
@@ -36,8 +32,7 @@ public sealed class Vehicle : Entity
         Model model,
         Vin vin,
         Location location,
-        Price rentPrice,
-        Price maintanancePrice,
+        decimal price,
         DateTime lastRentDate,
         List<PremiumAccessory> premiumAccessories
 
@@ -46,10 +41,15 @@ public sealed class Vehicle : Entity
         Model = model;
         Vin = vin;
         Location = location;
-        RentPrice = rentPrice;
-        MaintenancePrice = maintanancePrice;
+        Price = price;
         LastRentDate = lastRentDate;
         PremiumAccessories = premiumAccessories;
+    }
+
+    // este constructor es solo para poder ejecutar las migraciones con ef
+    private Vehicle()
+    {
+
     }
 
 
@@ -61,8 +61,7 @@ public sealed class Vehicle : Entity
         Model model,
         Vin vin,
         Location location,
-        Price rentPrice,
-        Price maintanancePrice,
+        decimal price,
         DateTime lastRentDate,
         List<PremiumAccessory> premiumServices
     )
@@ -72,8 +71,7 @@ public sealed class Vehicle : Entity
             model,
             vin,
             location,
-            rentPrice,
-            maintanancePrice,
+            price,
             lastRentDate,
             premiumServices
         );

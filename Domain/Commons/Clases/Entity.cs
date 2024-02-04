@@ -24,6 +24,12 @@ public abstract class Entity
         Id = id;
     }
 
+    // este constructor es solo para poder ejecutar las migraciones con ef
+    protected Entity()
+    {
+        
+    }
+
     // retorna una lista que contiene todos los eventos
     public IReadOnlyList<IDomainEvent> GetDomainEvents()
     {
