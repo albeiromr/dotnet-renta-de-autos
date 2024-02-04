@@ -40,5 +40,10 @@ internal sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
             maintenancePriceBuilder.Property(price => price.currency)
             .HasConversion(c => c.Code, code => Currency.FromCode(code!));
         });
+
+        // este campo se agrega para evitar problemas de concurrencia
+        // es decir que dos usuarios modifiquen e mismo record al tiempo
+        // y se explica en el video 47 de udemy (concurrencia optimista)
+        builder.Property<uint>("version").IsRowVersion();
     }
 }

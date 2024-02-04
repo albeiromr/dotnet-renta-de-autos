@@ -36,5 +36,10 @@ internal sealed class ReviewConfiguration : IEntityTypeConfiguration<Review>
         builder.HasOne<User>()
             .WithMany()
             .HasForeignKey(review => review.UserId);
+
+        // este campo se agrega para evitar problemas de concurrencia
+        // es decir que dos usuarios modifiquen e mismo record al tiempo
+        // y se explica en el video 47 de udemy (concurrencia optimista)
+        builder.Property<uint>("version").IsRowVersion();
     }
 }

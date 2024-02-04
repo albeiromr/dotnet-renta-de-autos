@@ -1,4 +1,5 @@
-﻿using Domain.Commons.Clases;
+﻿using Application.Commons.Exeptions;
+using Domain.Commons.Clases;
 using Domain.Commons.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -28,11 +29,18 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
     // IUnitOfWork
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var result = await base.SaveChangesAsync(cancellationToken);
-
-        await DispatchAllDomainEventsAsync();
-
-        return result;
+        try
+        {
+            var result = await base.SaveChangesAsync(cancellationToken);
+            await DispatchAllDomainEventsAsync();
+            return result;
+        } catch (DbUpdateConcurrencyException ex)
+        {
+            // Cuando estamos escribiendo datos en una base de datos y otro usuario también está 
+            // tratando de escribir datos, esta operación generará errores por temas de concurrencia
+            // y la db arrojará una execepción de tipo DbUpdateConcurrencyException
+            throw new ConcurrencyException("A concurrency exception was triggered", ex);
+        }
     }
 
     //El siguiente método se explica en el video número 46 del curso de udemy (unit of work)

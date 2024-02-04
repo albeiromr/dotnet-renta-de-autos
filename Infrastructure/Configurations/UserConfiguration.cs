@@ -27,5 +27,10 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         //Haciendo que el email sea único
         builder.HasIndex(user => user.Email).IsUnique();
 
+        // este campo se agrega para evitar problemas de concurrencia
+        // es decir que dos usuarios modifiquen e mismo record al tiempo
+        // y se explica en el video 47 de udemy (concurrencia optimista)
+        builder.Property<uint>("version").IsRowVersion();
+
     }
 }

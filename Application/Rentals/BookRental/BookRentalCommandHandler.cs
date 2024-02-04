@@ -9,6 +9,7 @@ using Domain.Users.Errors;
 using Domain.Rentals.ObjectValues;
 using Domain.Rentals.Errors;
 using Domain.Rentals;
+using Application.Commons.Exeptions;
 
 namespace Application.Rentals.BookRental;
 
@@ -59,19 +60,29 @@ internal sealed class BookRentalCommandHandler : ICommandHandler<BookRentalComma
             return Result.CreateWithFailureStatus<Guid>(RentalErrors.Overlap);
         }
 
-        var rental = Rental.Book(
+        try
+        {
+            var rental = Rental.Book(
             vehicle,
             user.Id,
             duration,
             _dateTimeService!.CurrentTime,
             _priceService!
-        );
+            );
 
-        _rentalRepository.Add(rental);
+            _rentalRepository.Add(rental);
 
-        await _unitOfWork!.SaveChanges(cancellationToken);
+            await _unitOfWork!.SaveChangesAsync(cancellationToken);
 
-        return rental.Id;
+            return rental.Id;
+        }
+        catch (ConcurrencyException)
+        {
+            //Ojo!!! ConcurrencyException es una excepción personalizada que es explicada en
+            // el video 47 del curso udemy concurrencia optimista
+            return Result.CreateWithFailureStatus<Guid>(RentalErrors.Overlap);
+        }
+        
 
     }
 }
