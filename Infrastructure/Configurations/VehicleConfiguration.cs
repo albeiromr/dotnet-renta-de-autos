@@ -32,13 +32,13 @@ internal sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         builder.OwnsOne(vehicle => vehicle.RentPrice, rentPriceBuilder =>
         {
             rentPriceBuilder.Property(price => price.currency)
-            .HasConversion(c => c.Code, codigo => Currency.FromCode(codigo!));
+            .HasConversion(c => c.Code, code => Currency.FromCode(code!));
         });
 
         builder.OwnsOne(vehicle => vehicle.MaintenancePrice, maintenancePriceBuilder =>
         {
             maintenancePriceBuilder.Property(price => price.currency)
-            .HasConversion(c => c.Code, codigo => Currency.FromCode(codigo!));
+            .HasConversion(c => c.Code, code => Currency.FromCode(code!));
         });
     }
 }
