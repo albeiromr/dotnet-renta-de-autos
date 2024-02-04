@@ -35,6 +35,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         return result;
     }
 
+    //El siguiente método se explica en el video número 46 del curso de udemy (unit of work)
     private async Task DispatchAllDomainEventsAsync()
     {
         // generando una consulta para obtener todos los Domainevents que están esperando por 
