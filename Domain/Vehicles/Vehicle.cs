@@ -21,9 +21,6 @@ public sealed class Vehicle : Entity
     //representa el precio de la renta del vehiculo por cada día
     public decimal Price { get; private set; }
 
-    // representa la fecha del ultimo alquiler
-    public DateTime? LastRentDate { get; internal set; }
-
     // Representa los servicios premium que pueden ser incluidos en el vehiculo
     public List<PremiumAccessory> PremiumAccessories { get; private set; } = new List<PremiumAccessory>();
 
@@ -33,7 +30,6 @@ public sealed class Vehicle : Entity
         Vin vin,
         Location location,
         decimal price,
-        DateTime lastRentDate,
         List<PremiumAccessory> premiumAccessories
 
     ) : base(id)
@@ -42,7 +38,6 @@ public sealed class Vehicle : Entity
         Vin = vin;
         Location = location;
         Price = price;
-        LastRentDate = lastRentDate;
         PremiumAccessories = premiumAccessories;
     }
 
@@ -62,7 +57,6 @@ public sealed class Vehicle : Entity
         Vin vin,
         Location location,
         decimal price,
-        DateTime lastRentDate,
         List<PremiumAccessory> premiumServices
     )
     {
@@ -72,7 +66,6 @@ public sealed class Vehicle : Entity
             vin,
             location,
             price,
-            lastRentDate,
             premiumServices
         );
 

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240204223955_InitDB")]
-    partial class InitDB
+    [Migration("20240205123929_InitDb")]
+    partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,18 +32,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<DateTime?>("CancelDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("cancel_date");
-
-                    b.Property<DateTime?>("CompleatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("compleated_date");
-
-                    b.Property<DateTime?>("ConfirmationDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("confirmation_date");
-
                     b.Property<DateTime?>("CreationDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("creation_date");
@@ -51,10 +39,6 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric")
                         .HasColumnName("price");
-
-                    b.Property<DateTime?>("RefusalDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("refusal_date");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer")
@@ -84,59 +68,6 @@ namespace Infrastructure.Migrations
                         .HasDatabaseName("ix_rentals_vehicle_id");
 
                     b.ToTable("rentals", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Reviews.Review", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("comment");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("creation_date");
-
-                    b.Property<int?>("Rating")
-                        .HasColumnType("integer")
-                        .HasColumnName("rating");
-
-                    b.Property<Guid>("RentalId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("rental_id");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id");
-
-                    b.Property<Guid>("VehicleId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("vehicle_id");
-
-                    b.Property<uint>("version")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("xid")
-                        .HasColumnName("xmin");
-
-                    b.HasKey("Id")
-                        .HasName("pk_reviews");
-
-                    b.HasIndex("RentalId")
-                        .HasDatabaseName("ix_reviews_rental_id");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_reviews_user_id");
-
-                    b.HasIndex("VehicleId")
-                        .HasDatabaseName("ix_reviews_vehicle_id");
-
-                    b.ToTable("reviews", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Users.User", b =>
@@ -183,10 +114,6 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    b.Property<DateTime?>("LastRentDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_rent_date");
 
                     b.Property<string>("Model")
                         .HasMaxLength(200)
@@ -261,30 +188,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Duration");
                 });
 
-            modelBuilder.Entity("Domain.Reviews.Review", b =>
-                {
-                    b.HasOne("Domain.Rentals.Rental", null)
-                        .WithMany()
-                        .HasForeignKey("RentalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_reviews_rentals_rental_id");
-
-                    b.HasOne("Domain.Users.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_reviews_user_user_id");
-
-                    b.HasOne("Domain.Vehicles.Vehicle", null)
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_reviews_vehicle_vehicle_id");
-                });
-
             modelBuilder.Entity("Domain.Vehicles.Vehicle", b =>
                 {
                     b.OwnsOne("Domain.Vehicles.ObjectValues.Location", "Location", b1 =>
@@ -298,25 +201,10 @@ namespace Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("location_city");
 
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("location_country");
-
-                            b1.Property<string>("Department")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("location_department");
-
                             b1.Property<string>("PickUpAddress")
                                 .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("location_pick_up_address");
-
-                            b1.Property<string>("Province")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("location_province");
 
                             b1.HasKey("VehicleId");
 

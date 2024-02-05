@@ -1,6 +1,5 @@
 ﻿using Domain.Commons.Clases;
 using Domain.Rentals.Enums;
-using Domain.Rentals.Errors;
 using Domain.Rentals.Events;
 using Domain.Rentals.ObjectValues;
 using Domain.Rentals.Services;
@@ -79,8 +78,6 @@ public sealed class Rental : Entity
             RentalStatus.Reserved,
             creationDate
         );
-
-        vehicle.LastRentDate = creationDate;
 
         rental.DispatchDomainEvent(new RentalBookedDomainEvent(rental.Id));
 
