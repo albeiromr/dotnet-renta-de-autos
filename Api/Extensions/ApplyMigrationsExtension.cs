@@ -5,7 +5,8 @@ namespace Api.Extensions;
 
 // esta clase se explica en el video número 53 del curso de udemy
 // (migración con ef)
-public static class ApplicationBuilderExtensions
+// esta clase tiene un método de extensión que nos permite realizar migraciones
+public static class ApplyMigrationsExtension
 {
     public static async void ApplyMigrations(this IApplicationBuilder app)
     {

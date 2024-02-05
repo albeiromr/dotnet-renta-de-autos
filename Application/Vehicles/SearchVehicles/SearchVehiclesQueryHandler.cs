@@ -35,10 +35,7 @@ internal sealed class SearchVehiclesQueryHandler : IQueryHandler<SearchVehiclesQ
                 a.id AS Id,
                 a.model AS Model,
                 a.vin AS Vin,
-                a.rent_price_amount AS Price,
-                a.rent_price_currency AS Currency,
-                a.location_country AS Country,
-                a.location_department AS Department,
+                a.price AS Price,
                 a.location_city AS City,
                 a.location_pick_up_address AS PickUpAddress
             FROM vehicles AS a
@@ -71,7 +68,7 @@ internal sealed class SearchVehiclesQueryHandler : IQueryHandler<SearchVehiclesQ
                 endDate = request.initDate,
                 ActiveRentalsStatuses = ActiveRentalsStatuses
             },
-            splitOn: "Country"
+            splitOn: "City"
         );
 
         return vehicles.ToList();

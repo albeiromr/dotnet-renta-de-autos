@@ -27,13 +27,19 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        //OJO!!! este es un método de extensión que ejecuta las migraciones
+        // OJO!!! este es un método de extensión que ejecuta las migraciones
         // se explica en el video número 53 del curso de udemy
         // (migración con ef)
         app.ApplyMigrations();
 
+        // OJO!!! este es un método de extensión que alimenta con data de prueba las 
+        // tablas de la db, esto se explica en el video 55 del curso de udemy
+        // (data de prueba con dapper)
+        // app.SeedDatabaseData();
+
+
         app.MapControllers();
 
-        app.Run();
+        app.Run(); 
     }
 }
