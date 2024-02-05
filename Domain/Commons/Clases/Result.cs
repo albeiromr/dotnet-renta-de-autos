@@ -16,7 +16,7 @@ public class Result
         if (success && error != Error.None)
             throw new InvalidOperationException();
 
-        if(success && error == Error.None)
+        if(!success && error == Error.None)
             throw new InvalidOperationException();
 
         Success = success;

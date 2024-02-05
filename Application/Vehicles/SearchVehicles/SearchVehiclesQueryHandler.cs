@@ -44,7 +44,7 @@ internal sealed class SearchVehiclesQueryHandler : IQueryHandler<SearchVehiclesQ
                 SELECT 1
                 FROM rentals AS b
                 WHERE 
-                    b.vehicle_id = a.id
+                    b.vehicle_id = a.id AND
                     b.duration_init <= @endDate AND
                     b.duration_end >= @startDate AND
                     b.status = ANY(@ActiveRentalsStatuses)
