@@ -29,7 +29,7 @@ internal sealed class GetRentalQueryHandler : IQueryHandler<GetRentalQuery, Rent
             duration_init AS DurationInit,
             duration_end AS DurationEnd,
             creation_date AS CreationDate
-            FROM alquileres WHERE id=@rentalId
+            FROM rentals WHERE id=@rentalId
          """;
 
         var rental = await connection.QueryFirstOrDefaultAsync<RentalResponse>(
