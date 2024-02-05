@@ -15,19 +15,4 @@ public static class RentalErrors
         "Rental.Overlap",
         "The vehicle is not available for rental in the required date range"
     );
-
-    public static readonly Error NotReserved = new Error(
-        "Rental.NotReserved",
-        "The Renatl is not reserved"
-    );
-
-    public static readonly Error NotConfirmed = new Error(
-        "Rental.NotConfirmed",
-        "The Renatl is not NotConfirmed"
-    );
-
-    public static readonly Error AreadyStarted = new Error(
-        "Rental.AreadyStarted",
-        "The Renatl is already started"
-    );
 }
