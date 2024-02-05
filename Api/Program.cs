@@ -37,6 +37,10 @@ public class Program
         // (data de prueba con dapper)
         // app.SeedDatabaseData();
 
+        // OJO!!! este es un método de extensión es personalizado y agrega el el 
+        // midleware personalizado que atrapa todas las excepciones de la applicación
+        app.UseGlobalExceptionHandler();
+
 
         app.MapControllers();
 

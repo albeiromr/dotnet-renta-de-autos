@@ -8,7 +8,7 @@ namespace Api.Extensions;
 //esta clase tiene un método de extensión que nos permite agregar data de prueba 
 // a la base de datos, se explica en el video número 55 del curso udemy
 // (data de puebas con dapper)
-public static class SeedDataExtension
+public static class SeedDataExtensions
 {
     public static void SeedDatabaseData(this IApplicationBuilder app)
     {
